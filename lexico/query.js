@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const jsdom = require('jsdom');
 const axios = require('axios').default;
 const { inspect } = require('util');
@@ -31,13 +31,21 @@ async function fetch(word) {
     const meanings = [...block.querySelectorAll('ul.semb > li > div.trg')].map(item => {
       const subMeanings = [...item.querySelectorAll('ol.subSenses > li.subSense')].map(sub => {
         let registerNode = sub.querySelector('span.sense-registers');
+        let meaningNode = sub.querySelector('span.ind');
+        if (meaningNode === null) {
+          meaningNode = sub.querySelector('div.crossReference');
+        }
         return {
           register: registerNode ? registerNode.innerHTML.trim() : null,
-          meaning: sub.querySelector('span.ind').innerHTML.trim(),
+          meaning: meaningNode.innerHTML.trim(),
         }
       });
+      let meaningNode = item.querySelector('span.ind');
+      if (meaningNode === null) {
+        meaningNode = item.querySelector('div.crossReference');
+      }
       return {
-        meaning: item.querySelector('span.ind').innerHTML.trim(),
+        meaning: meaningNode.innerHTML.trim(),
         note: innerHtmlOrNull(item.querySelector('span.grammatical_note')),
         subMeanings,
       };
@@ -83,18 +91,18 @@ async function fetch(word) {
 
 async function sleep() {
   return new Promise(resolve => {
-    setTimeout(() => resolve(), 3000);
+    setTimeout(() => resolve(), 2000);
   });
 }
 
 async function main() {
   const failedWords = [];
-  const words = fs.readFileSync('words.txt', 'utf-8').split('\n');
+  const words = (await fs.readFile('words.txt', 'utf-8')).split('\n');
   for (const word of words) {
     try {
       await fetch(word);
     } catch (e) {
-      console.log(e);
+      console.log(`* ${word} !!!`)
       failedWords.push(word);
     }
     await sleep();
