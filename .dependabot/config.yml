@@ -1,6 +1,6 @@
 version: 1
 update_configs:
-  - package_manager: "ruby:bundler"
+  - package_manager: "javascript"
     directory: "/lexico"
     update_schedule: "live"
     default_reviewers:
