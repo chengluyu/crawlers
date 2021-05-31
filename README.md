@@ -4,9 +4,11 @@ Someone says it's painful to make web crawlers. I don't agree with that. Because
 
 ## Crawlers and Motivations
 
-* `sspai` ([sspai.com](https://sspai.com), original name 少数派): One day I remembered that I had caught sight of a website in comment section that I urgently need at that time. But I can't locate that comment. What's worst, comments of this website are fetched by XHR so I can't Google it. I wrote a simple crawler with Python in 15 minutes. Finally I got what I want in 10 minutes.
+* `sspai` ([sspai.com](https://sspai.com), original name 少数派): One day I remembered that I had caught sight of a website in comment section that I urgently needed at that time. But I could't locate that comment. What's worst, comments of this website were fetched by XHR so I can't Google it. Therefore, I wrote a simple crawler with Python in 15 minutes. Finally I got what I want in 10 minutes of waiting.
 
-* `toefl`: I'm preparing my TOEFL exam. However, the test center in my city is in great demand so I can barely find a seat. So I made this Tampermonkey script to refersh the page automatically. Once there is any available seat, it'll send me a notification via Chrome.
+* `toefl`: I was preparing my TOEFL exam. However, the test center in my city is in great demand so I could barely find a seat. I made this Tampermonkey script to refersh the page automatically. Once there is any available seat, it'll send me a notification via Chrome.
 
-* `sdu`: This folder will contain several scripts related to my University.
-  * `card.js`: This script helps me translate exported turnovers of my campus ID card into Beancount.
+* `sdu`: This folder contains some scripts related to my University.
+  * `card.js`: This script generates exported turnovers of my campus ID card into [Beancount][beancount] transactions.
+
+[beancount]: https://github.com/beancount/beancount
