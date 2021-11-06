@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^0.23.0",
+    "axios": "^0.24.0",
     "jsdom": "^18.0.1"
   }
 }
